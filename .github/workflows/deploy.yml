@@ -18,6 +18,9 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
+    - name: Make Maven wrapper executable
+      run: chmod +x ./mvnw
+
     - name: Build with Maven
       run: ./mvnw clean package -DskipTests
 
@@ -39,4 +42,4 @@ jobs:
         IMAGE_TAG: latest
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG 
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
