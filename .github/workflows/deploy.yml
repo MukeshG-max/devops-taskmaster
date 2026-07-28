@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
 
     - name: Set up JDK 21
@@ -17,9 +17,6 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-
-    - name: Make Maven wrapper executable
-      run: chmod +x ./mvnw
 
     - name: Build with Maven
       run: ./mvnw clean package -DskipTests
@@ -35,7 +32,7 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Build, tag, and push image
       env:
         ECR_REGISTRY: 342480083312.dkr.ecr.eu-north-1.amazonaws.com
         ECR_REPOSITORY: taskmaster
