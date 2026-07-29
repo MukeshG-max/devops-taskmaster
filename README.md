@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 # DevOps TaskMaster
 
 A full-stack task management dashboard built to demonstrate core AWS + Kubernetes DevOps skills — deployed on Amazon EKS with a complete CI/CD pipeline to ECR.
@@ -155,4 +152,3 @@ This project demonstrates practical, hands-on experience with:
 - Container image build/push automation via CI/CD
 - Debugging AWS networking issues (security groups, load balancers, NodePorts)
 - Making pragmatic architecture trade-offs (in-cluster MySQL vs. RDS) under real constraints
->>>>>>> 526fc4f (Add README, screenshots, and final k8s manifests)
