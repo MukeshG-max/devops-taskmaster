@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: taskmaster
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: taskmaster
@@ -13,14 +13,23 @@ spec:
         app: taskmaster
     spec:
       containers:
-      - name: taskmaster
-        image: 342480083312.dkr.ecr.eu-north-1.amazonaws.com/taskmaster:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: SPRING_DATASOURCE_URL
-          value: "jdbc:mysql://database-1.cvs4iaegiul2.eu-north-1.rds.amazonaws.com:3306/taskmaster_db?useSSL=true&serverTimezone=UTC&allowPublicKeyRetrieval=true"
-        - name: SPRING_DATASOURCE_USERNAME
-          value: "admin"
-        - name: SPRING_DATASOURCE_PASSWORD
-          value: "kubernetes75488"
+        - name: taskmaster
+          image: 342480083312.dkr.ecr.eu-north-1.amazonaws.com/taskmaster:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "100m"
+            limits:
+              memory: "500Mi"
+              cpu: "300m"
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/taskmaster_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root123
+            - name: JAVA_OPTS
+              value: "-Xmx256m -Xms128m"

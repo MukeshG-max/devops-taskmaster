@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: taskmaster-service
+  name: taskmaster
 spec:
   type: LoadBalancer
-  ports:
-  - port: 80
-    targetPort: 8080
   selector:
     app: taskmaster
+  ports:
+    - port: 80
+      targetPort: 8080
